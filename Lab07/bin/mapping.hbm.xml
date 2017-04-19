@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+    <!DOCTYPE hibernate-mapping PUBLIC  
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.Challenge" table="challenge">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		
+		<property name="timeTaken"/>
+		<property name="state"/>
+	</class>
+
+	<class name="model.Round" table="round">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+
+		<property name="timeTaken"/>
+		<property name="scheme"/>
+		<property name="state"/>
+		<property name="userid"/>
+		
+		<list cascade="all" lazy="false" name="challenges">
+			<key column="rid"/>
+			<index column="cid"/>
+			<one-to-many class="model.Challenge"/>
+		</list>
+	</class>
+</hibernate-mapping> 
